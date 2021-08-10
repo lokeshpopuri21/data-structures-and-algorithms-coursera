@@ -1,13 +1,14 @@
-import sys
+a, b = [int(i) for i in input().split()]
 
-def lcm_naive(a, b):
-    for l in range(1, a*b + 1):
-        if l % a == 0 and l % b == 0:
-            return l
+def euclid_gcd(a, b):
+    if b == 0:
+        return a
+    c = a%b
+    return euclid_gcd(b, c)
 
-    return a*b
+if a>b:
+    gcd = euclid_gcd(a, b)
+else:
+    gcd = euclid_gcd(b, a)
 
-if __name__ == '__main__':
-    input = sys.stdin.read()
-    a, b = map(int, input.split())
-    print(lcm_naive(a, b))
+print(a*b//gcd)
